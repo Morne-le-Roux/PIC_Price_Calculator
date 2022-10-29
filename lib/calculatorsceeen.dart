@@ -84,6 +84,27 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                 },
               ),
             ),
+            Text(
+              "Template Price",
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+            TextField(
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold),
+              decoration: InputDecoration(
+                hintText: "00.00",
+                hintStyle: TextStyle(color: Colors.white54),
+                border: InputBorder.none,
+              ),
+              showCursor: false,
+              onChanged: (value) {
+                templatePrice = double.parse(value);
+              },
+            ),
           ],
         ),
       ),
