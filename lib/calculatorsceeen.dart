@@ -12,6 +12,8 @@ class CalculatorScreen extends StatefulWidget {
 class _CalculatorScreenState extends State<CalculatorScreen> {
   int templateSizeX = 0;
   int templateSizeY = 0;
+  double templatePrice = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,6 +34,13 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
             SizedBox(
               height: 20,
             ),
+            Text(
+              "X = ${templateSizeX.toString()}",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 28),
+            ),
             SliderTheme(
               data: SliderThemeData(
                   activeTrackColor: Colors.white,
@@ -51,7 +60,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
               ),
             ),
             Text(
-              "X = ${templateSizeX.toString()}",
+              "Y = ${templateSizeY.toString()}",
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -74,13 +83,6 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                   });
                 },
               ),
-            ),
-            Text(
-              "Y = ${templateSizeY.toString()}",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 28),
             ),
           ],
         ),
