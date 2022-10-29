@@ -39,6 +39,31 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                   inactiveTrackColor: Colors.amber[700],
                   overlayColor: Colors.white60),
               child: Slider(
+                value: templateSizeX.toDouble(),
+                min: 0.0,
+                max: 120.0,
+                divisions: 12,
+                onChanged: (double newValue) {
+                  setState(() {
+                    templateSizeX = newValue.toInt();
+                  });
+                },
+              ),
+            ),
+            Text(
+              "X = ${templateSizeX.toString()}",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 28),
+            ),
+            SliderTheme(
+              data: SliderThemeData(
+                  activeTrackColor: Colors.white,
+                  thumbColor: Colors.white,
+                  inactiveTrackColor: Colors.amber[700],
+                  overlayColor: Colors.white60),
+              child: Slider(
                 value: templateSizeY.toDouble(),
                 min: 0.0,
                 max: 120.0,
@@ -56,7 +81,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 28),
-            )
+            ),
           ],
         ),
       ),
