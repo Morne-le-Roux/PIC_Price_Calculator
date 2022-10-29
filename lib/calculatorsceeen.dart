@@ -13,6 +13,8 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   int templateSizeX = 0;
   int templateSizeY = 0;
   double templatePrice = 0;
+  int printSizeX = 0;
+  int printSizeY = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -104,6 +106,85 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
               onChanged: (value) {
                 templatePrice = double.parse(value);
               },
+            ),
+            Divider(),
+            // PRINT SIZE STARTS HERE
+            // PRINT SIZE STARTS HERE
+            // PRINT SIZE STARTS HERE
+            // PRINT SIZE STARTS HERE
+            // PRINT SIZE STARTS HERE
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              "Customer Print Size",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              "X = ${printSizeX.toString()}",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 28),
+            ),
+            SliderTheme(
+              data: SliderThemeData(
+                  activeTrackColor: Colors.white,
+                  thumbColor: Colors.white,
+                  inactiveTrackColor: Colors.amber[700],
+                  overlayColor: Colors.white60),
+              child: Slider(
+                value: printSizeX.toDouble(),
+                min: 0.0,
+                max: 200.0,
+                onChanged: (double newValue) {
+                  setState(() {
+                    printSizeX = newValue.toInt();
+                  });
+                },
+              ),
+            ),
+            Text(
+              "Y = ${printSizeY.toString()}",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 28),
+            ),
+            SliderTheme(
+              data: SliderThemeData(
+                  activeTrackColor: Colors.white,
+                  thumbColor: Colors.white,
+                  inactiveTrackColor: Colors.amber[700],
+                  overlayColor: Colors.white60),
+              child: Slider(
+                value: printSizeY.toDouble(),
+                min: 0.0,
+                max: 200.0,
+                onChanged: (double newValue) {
+                  setState(() {
+                    printSizeY = newValue.toInt();
+                  });
+                },
+              ),
+            ),
+            Text(
+              "Customer Price",
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              "R00.00",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold),
             ),
           ],
         ),
