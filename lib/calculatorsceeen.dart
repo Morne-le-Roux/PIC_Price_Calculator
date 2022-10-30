@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:pic_price_calculator/calculatorbrain.dart';
 
 class CalculatorScreen extends StatefulWidget {
   const CalculatorScreen({super.key});
@@ -15,6 +16,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   double templatePrice = 0;
   int printSizeX = 0;
   int printSizeY = 0;
+  double customerPrice = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +59,14 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                 onChanged: (double newValue) {
                   setState(() {
                     templateSizeX = newValue.toInt();
+                    CalculatorBrain calculator = CalculatorBrain(
+                        templateX: templateSizeX,
+                        templateY: templateSizeY,
+                        templatePrice: templatePrice,
+                        printX: printSizeX,
+                        printY: printSizeY,
+                        customerPrice: customerPrice);
+                    customerPrice = calculator.calculateCustomerPrice();
                   });
                 },
               ),
@@ -82,6 +92,14 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                 onChanged: (double newValue) {
                   setState(() {
                     templateSizeY = newValue.toInt();
+                    CalculatorBrain calculator = CalculatorBrain(
+                        templateX: templateSizeX,
+                        templateY: templateSizeY,
+                        templatePrice: templatePrice,
+                        printX: printSizeX,
+                        printY: printSizeY,
+                        customerPrice: customerPrice);
+                    customerPrice = calculator.calculateCustomerPrice();
                   });
                 },
               ),
@@ -105,6 +123,14 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
               showCursor: false,
               onChanged: (value) {
                 templatePrice = double.parse(value);
+                CalculatorBrain calculator = CalculatorBrain(
+                    templateX: templateSizeX,
+                    templateY: templateSizeY,
+                    templatePrice: templatePrice,
+                    printX: printSizeX,
+                    printY: printSizeY,
+                    customerPrice: customerPrice);
+                customerPrice = calculator.calculateCustomerPrice();
               },
             ),
             Divider(),
@@ -146,6 +172,14 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                 onChanged: (double newValue) {
                   setState(() {
                     printSizeX = newValue.toInt();
+                    CalculatorBrain calculator = CalculatorBrain(
+                        templateX: templateSizeX,
+                        templateY: templateSizeY,
+                        templatePrice: templatePrice,
+                        printX: printSizeX,
+                        printY: printSizeY,
+                        customerPrice: customerPrice);
+                    customerPrice = calculator.calculateCustomerPrice();
                   });
                 },
               ),
@@ -170,6 +204,14 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                 onChanged: (double newValue) {
                   setState(() {
                     printSizeY = newValue.toInt();
+                    CalculatorBrain calculator = CalculatorBrain(
+                        templateX: templateSizeX,
+                        templateY: templateSizeY,
+                        templatePrice: templatePrice,
+                        printX: printSizeX,
+                        printY: printSizeY,
+                        customerPrice: customerPrice);
+                    customerPrice = calculator.calculateCustomerPrice();
                   });
                 },
               ),
@@ -180,7 +222,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
             ),
             Text(
-              "R00.00",
+              "R${customerPrice.toStringAsFixed(2)}",
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 40,
