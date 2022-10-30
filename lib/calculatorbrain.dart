@@ -1,5 +1,3 @@
-import 'dart:math';
-
 class CalculatorBrain {
   int templateX;
   int templateY;
@@ -19,7 +17,6 @@ class CalculatorBrain {
   double calculateTemplatePricePerCM() {
     double cm = templateX.toDouble() * templateY.toDouble();
     double pricepercm = templatePrice / cm;
-    print(templateY.toDouble());
 
     return pricepercm;
   }
@@ -27,7 +24,6 @@ class CalculatorBrain {
   double calculateCustomerPrice() {
     double printSize = printX.toDouble() * printY.toDouble();
     double price = printSize * calculateTemplatePricePerCM();
-    print(price);
     return price;
   }
 }
