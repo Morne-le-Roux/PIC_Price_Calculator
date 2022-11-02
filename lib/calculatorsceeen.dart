@@ -125,7 +125,8 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                   hintStyle: TextStyle(color: Colors.white54),
                   border: InputBorder.none,
                 ),
-                showCursor: false,
+                showCursor: true,
+                cursorColor: Colors.white,
                 onChanged: (value) {
                   templatePrice = double.parse(value);
                   CalculatorBrain calculator = CalculatorBrain(
