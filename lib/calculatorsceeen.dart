@@ -17,22 +17,15 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   int printSizeX = 0;
   int printSizeY = 0;
   double customerPrice = 0;
-  List<Widget> rangeButtons = <Widget>[
-    Text("0-50"),
-    Text("50-100"),
-    Text("100-200"),
-    Text("300-400"),
-    Text("0-400")
-  ];
+  TextEditingController controllerX1 = TextEditingController();
+  TextEditingController controllerY1 = TextEditingController();
+  TextEditingController controllerX2 = TextEditingController();
+  TextEditingController controllerY2 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        backgroundColor: Colors.amber,
-        title: Center(child: Text("PIC Price Calculator")),
-      ),
 
 //BACKGROUND IMAGE OPEN
 
@@ -55,15 +48,35 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
               ),
+
               SizedBox(
-                height: 20,
-              ),
-              Text(
-                "X = ${templateSizeX.toString()}",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 28),
+                width: 200,
+                child: TextField(
+                  controller: controllerX1,
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    hintText: "X = ${templateSizeX.toString()}",
+                    hintStyle: TextStyle(color: Colors.white),
+                    border: InputBorder.none,
+                  ),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 28),
+                  onChanged: (value) {
+                    setState(() {
+                      templateSizeX = int.parse(value);
+                      CalculatorBrain calculator = CalculatorBrain(
+                          templateX: templateSizeX,
+                          templateY: templateSizeY,
+                          templatePrice: templatePrice,
+                          printX: printSizeX,
+                          printY: printSizeY,
+                          customerPrice: customerPrice);
+                      customerPrice = calculator.calculateCustomerPrice();
+                    });
+                  },
+                ),
               ),
               SliderTheme(
                 data: SliderThemeData(
@@ -73,11 +86,12 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                     overlayColor: Colors.white60),
                 child: Slider(
                   value: templateSizeX.toDouble(),
+                  max: 300,
                   min: 0.0,
-                  max: 120.0,
-                  divisions: 12,
+                  divisions: 30,
                   onChanged: (double newValue) {
                     setState(() {
+                      controllerX1.clear();
                       templateSizeX = newValue.toInt();
                       CalculatorBrain calculator = CalculatorBrain(
                           templateX: templateSizeX,
@@ -91,12 +105,31 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                   },
                 ),
               ),
-              Text(
-                "Y = ${templateSizeY.toString()}",
+              TextField(
+                controller: controllerY1,
+                textAlign: TextAlign.center,
+                decoration: InputDecoration(
+                  hintText: "Y = ${templateSizeY.toString()}",
+                  hintStyle: TextStyle(color: Colors.white),
+                  border: InputBorder.none,
+                ),
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 28),
+                onChanged: (value) {
+                  setState(() {
+                    templateSizeY = int.parse(value);
+                    CalculatorBrain calculator = CalculatorBrain(
+                        templateX: templateSizeX,
+                        templateY: templateSizeY,
+                        templatePrice: templatePrice,
+                        printX: printSizeX,
+                        printY: printSizeY,
+                        customerPrice: customerPrice);
+                    customerPrice = calculator.calculateCustomerPrice();
+                  });
+                },
               ),
               SliderTheme(
                 data: SliderThemeData(
@@ -107,10 +140,11 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                 child: Slider(
                   value: templateSizeY.toDouble(),
                   min: 0.0,
-                  max: 120.0,
-                  divisions: 12,
+                  max: 300.0,
+                  divisions: 30,
                   onChanged: (double newValue) {
                     setState(() {
+                      controllerY1.clear();
                       templateSizeY = newValue.toInt();
                       CalculatorBrain calculator = CalculatorBrain(
                           templateX: templateSizeX,
@@ -170,16 +204,32 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(),
-              Text(
-                "X = ${printSizeX.toString()}",
+
+              TextField(
+                controller: controllerX2,
+                textAlign: TextAlign.center,
+                decoration: InputDecoration(
+                  hintText: "X = ${printSizeX.toString()}",
+                  hintStyle: TextStyle(color: Colors.white),
+                  border: InputBorder.none,
+                ),
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 28),
+                onChanged: (value) {
+                  setState(() {
+                    printSizeX = int.parse(value);
+                    CalculatorBrain calculator = CalculatorBrain(
+                        templateX: templateSizeX,
+                        templateY: templateSizeY,
+                        templatePrice: templatePrice,
+                        printX: printSizeX,
+                        printY: printSizeY,
+                        customerPrice: customerPrice);
+                    customerPrice = calculator.calculateCustomerPrice();
+                  });
+                },
               ),
               SliderTheme(
                 data: SliderThemeData(
@@ -194,6 +244,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                   max: 300.0,
                   onChanged: (double newValue) {
                     setState(() {
+                      controllerX2.clear();
                       printSizeX = newValue.toInt();
                       CalculatorBrain calculator = CalculatorBrain(
                           templateX: templateSizeX,
@@ -207,13 +258,36 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                   },
                 ),
               ),
-              Text(
-                "Y = ${printSizeY.toString()}",
+              // SizedBox(
+              //   width: 200,
+              //   child:
+              TextField(
+                controller: controllerY2,
+                textAlign: TextAlign.center,
+                decoration: InputDecoration(
+                  hintText: "Y = ${printSizeY.toString()}",
+                  hintStyle: TextStyle(color: Colors.white),
+                  border: InputBorder.none,
+                ),
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 28),
+                onChanged: (value) {
+                  setState(() {
+                    printSizeY = int.parse(value);
+                    CalculatorBrain calculator = CalculatorBrain(
+                        templateX: templateSizeX,
+                        templateY: templateSizeY,
+                        templatePrice: templatePrice,
+                        printX: printSizeX,
+                        printY: printSizeY,
+                        customerPrice: customerPrice);
+                    customerPrice = calculator.calculateCustomerPrice();
+                  });
+                },
               ),
+
               SliderTheme(
                 data: SliderThemeData(
                     activeTrackColor: Colors.white,
@@ -227,6 +301,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                   max: 300.0,
                   onChanged: (double newValue) {
                     setState(() {
+                      controllerY2.clear();
                       printSizeY = newValue.toInt();
                       CalculatorBrain calculator = CalculatorBrain(
                           templateX: templateSizeX,
