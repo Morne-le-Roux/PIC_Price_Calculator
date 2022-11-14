@@ -17,6 +17,13 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   int printSizeX = 0;
   int printSizeY = 0;
   double customerPrice = 0;
+  List<Widget> rangeButtons = <Widget>[
+    Text("0-50"),
+    Text("50-100"),
+    Text("100-200"),
+    Text("300-400"),
+    Text("0-400")
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +33,9 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
         backgroundColor: Colors.amber,
         title: Center(child: Text("PIC Price Calculator")),
       ),
+
+//BACKGROUND IMAGE OPEN
+
       body: DecoratedBox(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -33,6 +43,11 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
         ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
+
+//BACKGROUND IMAGE CLOSE
+
+//TEMPLATE INPUT OPEN
+
           child: Column(
             children: [
               Text(
@@ -140,11 +155,11 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                 },
               ),
               Divider(),
-              // PRINT SIZE STARTS HERE
-              // PRINT SIZE STARTS HERE
-              // PRINT SIZE STARTS HERE
-              // PRINT SIZE STARTS HERE
-              // PRINT SIZE STARTS HERE
+
+//TEMPLATE INPUT CLOSE
+
+//CUSTOMER PRINT INPUT OPEN
+
               SizedBox(
                 height: 10,
               ),
@@ -158,6 +173,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
               SizedBox(
                 height: 20,
               ),
+              Row(),
               Text(
                 "X = ${printSizeX.toString()}",
                 style: TextStyle(
@@ -173,8 +189,9 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                     overlayColor: Colors.white60),
                 child: Slider(
                   value: printSizeX.toDouble(),
+                  divisions: 30,
                   min: 0.0,
-                  max: 200.0,
+                  max: 300.0,
                   onChanged: (double newValue) {
                     setState(() {
                       printSizeX = newValue.toInt();
@@ -205,8 +222,9 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                     overlayColor: Colors.white60),
                 child: Slider(
                   value: printSizeY.toDouble(),
+                  divisions: 30,
                   min: 0.0,
-                  max: 200.0,
+                  max: 300.0,
                   onChanged: (double newValue) {
                     setState(() {
                       printSizeY = newValue.toInt();
@@ -237,6 +255,8 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
             ],
           ),
         ),
+
+//CUSTOMER PRINT INPUT CLOSE
       ),
     );
   }
