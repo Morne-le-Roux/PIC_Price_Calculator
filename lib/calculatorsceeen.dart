@@ -25,6 +25,10 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          backgroundColor: Colors.amber,
+          title: Center(child: Text("PIC Price Calculator"))),
+
       backgroundColor: Colors.transparent,
 
 //BACKGROUND IMAGE OPEN
