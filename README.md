@@ -1,16 +1,9 @@
-# pic_price_calculator
+Basic App built mainly for practice but for practical use at my current job at a print shop.
 
-A new Flutter project.
+The app first takes an input for a known price for a known size print. The sliders are locked to devisions of 10, but manual input can be made if you touch on the sizes.
+Second, the app takes in input for the cost of the above measurements.
+Third, the app asks for the custom size of the print the customer requested. The sliders are locked to devisions of 10 to account for paper wastage, but manual input can be made if you touch on the measurements.
 
-## Getting Started
+Finally the app works by calculating the cost per cm2 of the first and second input, and applies that price to the third input, outputting a price that you can charge the customer.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Measurement Units and Currency symbols are left out to account for other countries. Imagination is key.
